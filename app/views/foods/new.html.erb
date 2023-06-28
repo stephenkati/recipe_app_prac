@@ -1,0 +1,9 @@
+<div>
+  <%= form_for @food do |f| %>
+    <%= f.text_field :name, placeholder: "food name" %>
+    <%= f.text_field :measurement_unit, placeholder: "e.g 100g" %>
+    <%= f.text_field :price, placeholder: "Price in US dollars" %>
+    <%= f.text_field :quantity, placeholder: "Quantity in numbers" %>
+    <%= f.submit %>
+  <%end%>
+</div>

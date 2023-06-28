@@ -4,3 +4,26 @@
 <% else %>
   <%= button_to "Sign in", new_user_session_path %> 
 <% end %>
+
+<div>
+  <%= link_to 'Add Food', new_foods_path %>
+</div>
+
+<div>
+  <table>
+    <tr>
+      <th>Food</th>
+      <th>Measurement Unit</th>
+      <th>Unit Price</th>
+      <th>Actions</th>
+    </tr>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= "$#{food.price}" %></td>
+        <td><%= button_to 'Delete', foods_path(food), method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
