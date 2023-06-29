@@ -22,11 +22,10 @@ class FoodsController < ApplicationController
 
     if @food.destroy
       flash[:notice] = 'Food deleted successfully.'
-      redirect_to root_path
     else
       flash[:alert] = 'Error! Food not deleted.'
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   private

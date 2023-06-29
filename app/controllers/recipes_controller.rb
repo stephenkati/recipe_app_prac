@@ -16,13 +16,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
-    if @recipe.save
-      flash[:notice] = 'Recipe saved successfully'
-      redirect_to recipes_path
-    else
-      flash[:notice] = 'Failed to save Recipe!'
-      redirect_to recipes_path
-    end
+    flash[:notice] = if @recipe.save
+                       'Recipe saved successfully'
+                     else
+                       'Failed to save Recipe!'
+                     end
+    redirect_to recipes_path
   end
 
   def destroy
@@ -30,11 +29,10 @@ class RecipesController < ApplicationController
 
     if @recipe.destroy
       flash[:notice] = 'Recipe deleted successfully.'
-      redirect_to recipes_path
     else
       flash[:alert] = 'Error! Recipe not deleted.'
-      redirect_to recipes_path
     end
+    redirect_to recipes_path
   end
 
   def toggle_public
@@ -48,5 +46,4 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
   end
-
 end
