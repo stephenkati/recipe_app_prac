@@ -6,7 +6,7 @@
 <% end %>
 
 <div>
-  <%= link_to 'Add Food', new_foods_path %>
+  <%= link_to 'Add Food', new_food_path %>
 </div>
 
 <div>
@@ -22,7 +22,7 @@
         <td><%= food.name %></td>
         <td><%= food.measurement_unit %></td>
         <td><%= "$#{food.price}" %></td>
-        <td><%= button_to 'Delete', foods_path(food), method: :delete %></td>
+        <td><%= button_to 'Delete', food_path(food), method: :delete %></td>
       </tr>
     <% end %>
   </table>
