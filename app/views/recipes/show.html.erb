@@ -10,6 +10,35 @@
   <% end %>
   <p> Preparation_time <%= @recipe.preparation_time %> </p>
   <p> Cooking time  <%= @recipe.cooking_time %> </p>
-  <h2> Steps </h2>
   <p> <%= @recipe.description %> </p>
+
+  <div>
+    <%= link_to 'Add Ingedrient', new_recipe_recipe_food_path(@recipe) %>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th> Food </th>
+        <th> Quantity </th>
+        <th> Value </th>
+        <th> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_foods.each do |recipe_food| %>
+        <tr>
+          <td> <%= recipe_food.food.name %> </td>
+          <td> <%= recipe_food.quantity %> </td>
+          <td> <%= recipe_food.quantity * recipe_food.food.price %> </td>
+          <td>
+            <div>
+              <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, recipe_food) %>
+              <%= button_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete %>
+            </div>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>

@@ -1,0 +1,23 @@
+<% if user_signed_in? %> 
+ <div> Welcome <%= current_user.email %> </div> 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+<% else %>
+  <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
+
+<% @recipes.each do |recipe| %>
+  <div>
+    <div>
+      <%= link_to recipe_path(recipe) do %>
+        <div>
+          <h2> <%= recipe.name %> </h2>
+          <p>by <% recipe.user.name %> </p>
+        </div>
+        <div class='recipe-detail'>
+          <p>Total food items: <%= recipe.foods.count %></p>
+          <p>Total Price: $<%= RecipeFood.where(recipe_id: recipe.id).joins(:food).sum('recipe_foods.quantity * foods.price')%></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
