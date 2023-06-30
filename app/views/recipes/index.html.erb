@@ -3,11 +3,11 @@
 </div>
 
 <% @recipes.each do |recipe| %>
-  <div>
-    <%= link_to recipe_path(recipe) do %>
-      <p> <%= recipe.name %> </p>
-      <p> <%=recipe.description %> </p>
-    <% end %>
-    <%= button_to 'REMOVE', recipe_path(recipe), method: :delete %>
-  </div>
+    <div>
+      <%= link_to recipe_path(recipe) do %>
+        <p> <%= recipe.name %> </p>
+        <p> <%=recipe.description %> </p>
+      <% end %>
+      <%= button_to 'REMOVE', recipe_path(recipe), method: :delete %>
+    </div>
 <% end %>
